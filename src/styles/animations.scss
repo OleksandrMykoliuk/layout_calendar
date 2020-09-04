@@ -1,0 +1,10 @@
+@keyframes dayPopUp {
+  0% {
+    transform: translateY(0);
+    background: #eee;
+  }
+  100% {
+    transform: translateY(-20px);
+    background: pink;
+  }
+}

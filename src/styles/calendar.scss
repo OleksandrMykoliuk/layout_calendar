@@ -1,0 +1,41 @@
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: ($sizeGap + $sizeCellCalendar) * 7;
+  counter-reset: days;
+
+  & div {
+    text-align: center;
+    line-height: $sizeCellCalendar;
+    width: $sizeCellCalendar;
+    height: $sizeCellCalendar;
+    border: 1px solid black;
+    background-color: #eee;
+    margin: 0 $sizeGap $sizeGap 0;
+    counter-increment: days;
+  }
+  
+  & div::before {
+    content: counter(days);
+  }
+  
+  & div:hover {
+    background-color: pink;
+    cursor: pointer;
+    animation-name: dayPopUp;
+    animation-duration: 0.5s;
+  }
+  
+  @each $day, $num in $weekDays {
+    &-#{$day} div:first-child {
+      margin-left: ($sizeCellCalendar + 1) * $num;
+    }
+  }
+
+  @for $i from 28 through 30 {
+    &-#{$i} div:nth-child(n+#{$i+1}):nth-child(-n+31) {
+      display: none;
+    }
+  }
+}
